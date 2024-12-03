@@ -1,0 +1,3 @@
+/cygdrive/d/Learning/calculator/cmake-build-debug/CMakeFiles/calculator.dir
+/cygdrive/d/Learning/calculator/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/d/Learning/calculator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
