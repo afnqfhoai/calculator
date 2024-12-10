@@ -3,6 +3,6 @@
 int main(void)
 {
     printf("Hello, World!\n");
-    printf("This is Sun Yat-Sen University's F**king Group Work\n");
+    printf("来点中文");
     return 0;
 }
