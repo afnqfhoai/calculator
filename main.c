@@ -5,7 +5,9 @@
 
 void getCommand();
 void printScreen();
-//用于识别输入
+char Low2Up(char c);
+char GetChar();
+char change[101] = "change";
 char help[101] = "help";
 char about[101] = "about";
 char history[101] = "history";
@@ -18,6 +20,7 @@ void printScreen()//输出主屏幕
     printf("********************\n");
     printf("*  输入式子以开始计算  *\n");
     printf("********************\n");
+    printf("change 单位换算\n");
     printf("help 获取帮助\n");
     printf("about 关于开发\n");
     printf("history 历史计算数据\n");
@@ -25,8 +28,25 @@ void printScreen()//输出主屏幕
     printf("请输入式子或所需功能：\n");
 }
 
+char Low2Up(char c) // 如果输入是小写字母，就转化为大写字母，否则不用管
+{
+    if (c >= 'a' && c <= 'z')
+        c = c - 32;
+    return c;
+}
+
+char GetChar() // 输入一个字符（非空格、非回车、ASCII码大于零）
+{
+    char c;
+    do
+    {
+        c = getchar();
+    } while (c == '\n' || c == ' ' || c < 0);
+    return c;
+}
 
 void getCommand() {
+    void change();
     void printHelp();
     void printAbout();
     void printHistory();
@@ -43,6 +63,9 @@ void getCommand() {
     else if (strcmp(input, history) == 0) {
         printHistory();
     }
+    else if (strcmp(input, history) == 0){
+        change();
+    }
     else if (strcmp(input, quit) == 0) {
         printf("感谢使用。");
         exit(1);
@@ -54,6 +77,72 @@ void getCommand() {
         }
     }
 }
+
+void change(){
+    void length();
+    void weight();
+    void temperature();
+    void energy();
+    void velocity();
+    void angle();
+    printf("*************************\n");
+    printf("*********单位转换********\n");
+    printf("***A:长度 B:重量 C:温度***\n");
+    printf("***D:能量 E:速度 F:角度***\n");
+    printf("*************************\n");
+    printf("请选择需要转换的对象:\n");
+    char input;
+    input = GetChar();  // 用于输入一个字符（非空格、非回车、ASCII码大于零）
+    char Low2Up(input); // 将小写字母转化为大写字母
+    switch (Low2Up(input))
+    {
+    case 'A':
+        void length();
+        break;
+    case 'B':
+        void weight();
+        break;
+    case 'C':
+        void temperature();
+        break;
+    case 'D':
+        void energy();
+        break;
+    case 'E':
+        void velocity();
+        break;
+    case 'F':
+        void angle();
+        break;
+    default:
+        printf("输入错误\n\n"); // 如果输入的是其它字符，则输入错误
+    }
+}
+void length(){
+
+}
+
+void weight(){
+
+}
+
+void temperature(){
+
+}
+
+void energy(){
+
+}
+
+void velocity(){
+
+}
+
+void angle(){
+
+}
+
+
 
 void printHelp() {
     printf("帮助\n");
