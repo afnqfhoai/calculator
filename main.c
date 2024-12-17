@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 void getCommand();
 void printScreen();
@@ -20,7 +22,7 @@ void printScreen()//输出主屏幕
     printf("about 关于开发\n");
     printf("history 历史计算数据\n");
     printf("quit 退出\n");
-    printf("请输入所需功能：");
+    printf("请输入式子或所需功能：");
 }
 
 
@@ -29,15 +31,27 @@ void getCommand() {
     void printAbout();
     void printHistory();
     void getInput();
+    double calculate(char* input);
+    bool preCalculate(char* input);
     getInput();
     if (strcmp(input, help) == 0) {
         printHelp();
     }
-    if (strcmp(input, about) == 0) {
+    else if (strcmp(input, about) == 0) {
         printAbout();
     }
-    if (strcmp(input, history) == 0) {
+    else if (strcmp(input, history) == 0) {
         printHistory();
+    }
+    else if (strcmp(input, quit) == 0) {
+        printf("感谢使用。");
+        exit(0);
+    }
+    else {
+        preCalculate(input);
+        if(preCalculate(input)) {
+            printf("%lf",calculate(input));
+        }
     }
 }
 
@@ -68,12 +82,66 @@ void printHistory() {
     }
 }
 
+
 void getInput() {
     scanf("%s", input);
 }
 
 
+double calculate(char* input) {
+    double number[101];
+    char operation[101];
+    int nIndex = 0;
+    for (int i = 0; input[i] != '\0'; i++) {
+        char charNumber[101];
+        int jIndex = 0;
+        while ((input[i] >= '0' && input[i] <= '9') || input[i] == '.'|| input[i] == '-') {
+            charNumber[jIndex] = input[i];
+            jIndex++;
+            i++;
+        }charNumber[jIndex] = '\0';
+        char *endptr;
+        number[nIndex] = strtod(charNumber,&endptr);
+        nIndex++;
+    }
+    int oIndex = 0;
+    for (int i = 0; input[i] != '\0'; i++) {
+        if (input[i] == '+'
+            ||input[i] == '-'
+            ||input[i] == '*'
+            ||input[i] == '/') {
+            operation[oIndex] = input[i];
+        }
+        oIndex++;
+    }
+    for (int i = 0; operation[i] != '\0'; i++) {
+        if (operation[i] == '*') {
+            number[i] = number[i] * number[i+1];
+            number[i+1] = 0;
+        }
+    }
+    double sum = 0;
+    for (int i = 0; number[i] != '\0'; i++) {
+        sum += number[i];
+    }
+    return sum;
+}
 
+bool preCalculate(char* input) {
+    for (int i = 0; input[i] != '\0'; i++) {
+        if ((input[i] >= '0' && input[i] <= '9')
+            || input[i] == '+'
+            || input[i] == '-'
+            || input[i] == '*'
+            || input[i] == '/'
+            || input[i] == '.') {
+        }else {
+            printf("于第%d处发现错误，请检查", i+1);
+            return false;
+        }
+    }
+    return true;
+}
 
 
 
@@ -99,9 +167,6 @@ int main()
    while (1) {
        printScreen();
        getCommand();
-       if (strcmp(input,quit) == 0) {
-           return 0;
-       }
    }
 }
 
