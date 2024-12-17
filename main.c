@@ -22,7 +22,7 @@ void printScreen()//输出主屏幕
     printf("about 关于开发\n");
     printf("history 历史计算数据\n");
     printf("quit 退出\n");
-    printf("请输入式子或所需功能：");
+    printf("请输入式子或所需功能：\n");
 }
 
 
@@ -45,12 +45,12 @@ void getCommand() {
     }
     else if (strcmp(input, quit) == 0) {
         printf("感谢使用。");
-        exit(0);
+        exit(1);
     }
     else {
         preCalculate(input);
         if(preCalculate(input)) {
-            printf("%lf",calculate(input));
+            printf("%lf\n",calculate(input));
         }
     }
 }
@@ -94,34 +94,58 @@ double calculate(char* input) {
     int nIndex = 0;
     for (int i = 0; input[i] != '\0'; i++) {
         char charNumber[101];
-        int jIndex = 0;
-        while ((input[i] >= '0' && input[i] <= '9') || input[i] == '.'|| input[i] == '-') {
+        while ((input[i] >= '0' && input[i] <= '9')|| input[i] == '-') {
+            int jIndex = 0;
             charNumber[jIndex] = input[i];
             jIndex++;
             i++;
-        }charNumber[jIndex] = '\0';
-        char *endptr;
-        number[nIndex] = strtod(charNumber,&endptr);
-        nIndex++;
+            while ((input[i] >= '0' && input[i] <= '9') || input[i] == '.') {
+                charNumber[jIndex] = input[i];
+                jIndex++;
+                i++;
+            }
+            charNumber[jIndex] = '\0';
+            char *endptr;
+            number[nIndex] = strtod(charNumber,&endptr);
+            nIndex++;
+        }
     }
     int oIndex = 0;
     for (int i = 0; input[i] != '\0'; i++) {
         if (input[i] == '+'
             ||input[i] == '-'
             ||input[i] == '*'
-            ||input[i] == '/') {
+            ||input[i] == '/')
+        {
             operation[oIndex] = input[i];
+            oIndex++;
         }
-        oIndex++;
     }
+
+    // for (int i = 0; operation[i] != '\0'; i++) {
+    //     printf("%c\n", operation[i]);
+    // }
+    // for (int i = 0; number[i] != '\0'; i++) {
+    //     printf("%lf\n", number[i]);
+    // }
+
     for (int i = 0; operation[i] != '\0'; i++) {
         if (operation[i] == '*') {
-            number[i] = number[i] * number[i+1];
-            number[i+1] = 0;
+            // printf("%d\n", i);
+            double product = number[i] * number[i+1];
+            // printf("%lf\n", product);
+            number[i + 1] = product ;
+            number[i] = 0;
+            // printf("%lf\n", number[i]);
+            // printf("%lf\n", number[i+1]);
         }
     }
+    // for (int i = 0; number[i] != '\0'; i++) {
+    //     printf("%lf\n", number[i]);
+    // }
+
     double sum = 0;
-    for (int i = 0; number[i] != '\0'; i++) {
+    for (int i = 0; i<101; i++) {
         sum += number[i];
     }
     return sum;

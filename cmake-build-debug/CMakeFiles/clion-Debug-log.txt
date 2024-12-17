@@ -1,13 +1,4 @@
 C:\Users\26775\AppData\Local\JetBrains\CLion2024.2\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/cygdrive/d/Program Files/JetBrains/CLion 2024.2.2/bin/ninja/cygwin/x64/ninja.exe" -G Ninja -S /cygdrive/d/Learning/calculator -B /cygdrive/d/Learning/calculator/cmake-build-debug
--- Configuring done (0.5s)
-CMake Error at CMakeLists.txt:6 (add_executable):
-  Cannot find source file:
-
-    test.c
-
-
-CMake Error at CMakeLists.txt:6 (add_executable):
-  No SOURCES given to target: calculator
-
-
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /cygdrive/d/Learning/calculator/cmake-build-debug
