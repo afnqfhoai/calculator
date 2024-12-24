@@ -89,7 +89,7 @@ void printHistory() {
 
 void getInput() {
     // free(input);
-    scanf("%s", &input);
+    scanf("%s", input);
 }
 
 
