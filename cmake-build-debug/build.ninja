@@ -55,6 +55,24 @@ build CMakeFiles/calculator.dir/main.c.o: C_COMPILER__calculator_unscanned_Debug
   OBJECT_DIR = CMakeFiles/calculator.dir
   OBJECT_FILE_DIR = CMakeFiles/calculator.dir
 
+build CMakeFiles/calculator.dir/calculate.c.o: C_COMPILER__calculator_unscanned_Debug /cygdrive/d/Learning/calculator/calculate.c || cmake_object_order_depends_target_calculator
+  DEP_FILE = CMakeFiles/calculator.dir/calculate.c.o.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/calculator.dir
+  OBJECT_FILE_DIR = CMakeFiles/calculator.dir
+
+build CMakeFiles/calculator.dir/preCalculate.c.o: C_COMPILER__calculator_unscanned_Debug /cygdrive/d/Learning/calculator/preCalculate.c || cmake_object_order_depends_target_calculator
+  DEP_FILE = CMakeFiles/calculator.dir/preCalculate.c.o.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/calculator.dir
+  OBJECT_FILE_DIR = CMakeFiles/calculator.dir
+
+build CMakeFiles/calculator.dir/screenPrinting.c.o: C_COMPILER__calculator_unscanned_Debug /cygdrive/d/Learning/calculator/screenPrinting.c || cmake_object_order_depends_target_calculator
+  DEP_FILE = CMakeFiles/calculator.dir/screenPrinting.c.o.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/calculator.dir
+  OBJECT_FILE_DIR = CMakeFiles/calculator.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target calculator
@@ -63,7 +81,7 @@ build CMakeFiles/calculator.dir/main.c.o: C_COMPILER__calculator_unscanned_Debug
 #############################################
 # Link the executable calculator.exe
 
-build calculator.exe: C_EXECUTABLE_LINKER__calculator_Debug CMakeFiles/calculator.dir/main.c.o
+build calculator.exe: C_EXECUTABLE_LINKER__calculator_Debug CMakeFiles/calculator.dir/main.c.o CMakeFiles/calculator.dir/calculate.c.o CMakeFiles/calculator.dir/preCalculate.c.o CMakeFiles/calculator.dir/screenPrinting.c.o
   FLAGS = -g
   LINK_FLAGS = -Wl,--enable-auto-import
   OBJECT_DIR = CMakeFiles/calculator.dir
