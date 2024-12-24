@@ -1,8 +1,6 @@
 # Calculator
 
-[//]: # ([![Build]&#40;https://github.com/BinZhengStudio/IndustryBase/actions/workflows/build-and-release.yml/badge.svg&#41;]&#40;https://github.com/BinZhengStudio/IndustryBase/actions/workflows/build-and-release.yml&#41;)
-
-[//]: # ([![Sync]&#40;https://github.com/BinZhengStudio/IndustryBase/actions/workflows/gitee-sync.yml/badge.svg&#41;]&#40;https://github.com/BinZhengStudio/IndustryBase/actions/workflows/gitee-sync.yml&#41;)
+[![GitHub stars](https://img.shields.io/github/stars/FengMingMC/calculator?style=social)](https://github.com/FengMingMC/calculator)
 
 **English (en-US)** | [简体中文 (zh-CN)](./README.zh-CN.md)
 

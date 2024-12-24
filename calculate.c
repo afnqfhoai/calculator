@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#define naturalLogarithm
+
 
 double calculate(const char* input) {
     double number[101];
     char operation[101];
     int nIndex = 0;
+    memset(number, 0, sizeof(number));
+    memset(operation, 0, sizeof(operation));
     for (int i = 0; input[i] != '\0'; i++) {
         char charNumber[101];
         while ((input[i] >= '0' && input[i] <= '9')|| input[i] == '-') {

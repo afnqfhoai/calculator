@@ -1,8 +1,7 @@
 # 计算器
 
-[![Build](https://github.com/BinZhengStudio/IndustryBase/actions/workflows/build-and-release.yml/badge.svg)](https://github.com/BinZhengStudio/IndustryBase/actions/workflows/build-and-release.yml)
+[![GitHub stars](https://img.shields.io/github/stars/FengMingMC/calculator?style=social)](https://github.com/FengMingMC/calculator)
 
-[![Sync](https://github.com/BinZhengStudio/IndustryBase/actions/workflows/gitee-sync.yml/badge.svg)](https://github.com/BinZhengStudio/IndustryBase/actions/workflows/gitee-sync.yml)
 
 [English (en-US)](./README.md) | **简体中文 (zh-CN)**
 
