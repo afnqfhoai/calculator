@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 void getCommand();
 void printScreen();
-char Low2Up(char c);
 char GetChar();
-char change[101] = "change";
+char c[101] = "change";
 char help[101] = "help";
 char about[101] = "about";
 char history[101] = "history";
@@ -28,12 +28,6 @@ void printScreen()//输出主屏幕
     printf("请输入式子或所需功能：\n");
 }
 
-char Low2Up(char c) // 如果输入是小写字母，就转化为大写字母，否则不用管
-{
-    if (c >= 'a' && c <= 'z')
-        c = c - 32;
-    return c;
-}
 
 char GetChar() // 输入一个字符（非空格、非回车、ASCII码大于零）
 {
@@ -63,7 +57,7 @@ void getCommand() {
     else if (strcmp(input, history) == 0) {
         printHistory();
     }
-    else if (strcmp(input, history) == 0){
+    else if (strcmp(input, c) == 0){
         change();
     }
     else if (strcmp(input, quit) == 0) {
@@ -79,70 +73,157 @@ void getCommand() {
 }
 
 void change(){
-    void length();
-    void weight();
     void temperature();
     void energy();
     void velocity();
     void angle();
-    printf("*************************\n");
-    printf("*********单位转换********\n");
-    printf("***A:长度 B:重量 C:温度***\n");
-    printf("***D:能量 E:速度 F:角度***\n");
-    printf("*************************\n");
-    printf("请选择需要转换的对象:\n");
+    void change_printScreen();
     char input;
+    while(1){
     input = GetChar();  // 用于输入一个字符（非空格、非回车、ASCII码大于零）
-    char Low2Up(input); // 将小写字母转化为大写字母
-    switch (Low2Up(input))
+    change_printScreen();
+    if(toupper(input)=='Q')
+        break;
+    switch (toupper(input))
     {
     case 'A':
-        void length();
+        angle();
         break;
     case 'B':
-        void weight();
+        temperature();
         break;
     case 'C':
-        void temperature();
+        energy();
         break;
     case 'D':
-        void energy();
+        velocity();
         break;
-    case 'E':
-        void velocity();
-        break;
-    case 'F':
-        void angle();
-        break;
+
     default:
         printf("输入错误\n\n"); // 如果输入的是其它字符，则输入错误
     }
-}
-void length(){
+    }
 
 }
 
-void weight(){
-
+void change_printScreen(){
+    printf("************************\n");
+    printf("*********单位转换********\n");
+    printf("******A:角度 B:温度******\n");
+    printf("******C:能量 D:速度******\n");
+    printf("**********Q:退出*********\n");
+    printf("请选择需要转换的对象:\n");
 }
 
-void temperature(){
-
+// 角度单位转换函数
+void angle()
+{
+    float value, result;
+    char unit;
+    printf("请输入角度值和当前单位（d 表示度，r 表示弧度）：\n");
+    scanf("%f %c", &value, &unit);
+    switch (toupper(unit))
+    {
+    case 'D':
+        // 度转弧度
+        result = value * 3.14159265358979323846 / 180.0;
+        printf("%.2f deg = %.2f rad\n", value, result);
+        break;
+    case 'R':
+        // 弧度转度
+        result = value * 180.0 / 3.14159265358979323846;
+        printf("%.2f rad = %.2f deg\n", value, result);
+        break;
+    default:
+        printf("输入的单位错误，请输入 d 或 r。\n");
+    }
 }
 
-void energy(){
-
+// 能量单位转换函数
+void energy()
+{
+    float value, result;
+    char unit;
+    printf("请输入能量值和当前单位（j 表示焦耳，cal 表示卡路里）：\n");
+    scanf("%f %c", &value, &unit);
+    switch (toupper(unit))
+    {
+    case 'J':
+        // 焦耳转卡路里
+        result = value / 4.184;
+        printf("%.2f J = %.2f cal\n", value, result);
+        break;
+    case 'CAL':
+        // 卡路里转焦耳
+        result = value * 4.184;
+        printf("%.2f cal = %.2f J\n", value, result);
+        break;
+    default:
+        printf("输入的单位错误，请输入 J 或 cal。\n");
+    }
 }
 
-void velocity(){
-
+// 速度单位转换函数
+void velocity()
+{
+    float value, result;
+    char unit;
+    printf("请输入速度值和当前单位（m 表示米每秒，k 表示千米每小时）：\n");
+    scanf("%f %c", &value, &unit);
+    switch (toupper(unit))
+    {
+    case 'M':
+        // 米每秒转千米每小时
+        result = value * 3.6;
+        printf("%.2f m/s = %.2f km/h\n", value, result);
+        break;
+    case 'K':
+        // 千米每小时转米每秒
+        result = value / 3.6;
+        printf("%.2f km/h = %.2f m/s\n", value, result);
+        break;
+    default:
+        printf("输入的单位错误，请输入 m 或 k。\n");
+    }
 }
 
-void angle(){
-
+// 温度单位转换函数
+void temperature()
+{
+    float value, result;
+    char unit;
+    printf("请输入温度值和当前单位（C 表示摄氏度，F 表示华氏度，K 表示开尔文）：\n");
+    scanf("%f %c", &value, &unit);
+    switch (toupper(unit))
+    {
+    case 'C':
+        // 摄氏度转华氏度
+        result = value * 9.0 / 5.0 + 32.0;
+        printf("%.2f C = %.2f F\n", value, result);
+        // 摄氏度转开尔文
+        result = value + 273.15;
+        printf("%.2f C = %.2f K\n", value, result);
+        break;
+    case 'F':
+        // 华氏度转摄氏度
+        result = (value - 32.0) * 5.0 / 9.0;
+        printf("%.2f F = %.2f C\n", value, result);
+        // 华氏度转开尔文
+        result = (value + 459.67) * 5.0 / 9.0;
+        printf("%.2f F = %.2f K\n", value, result);
+        break;
+    case 'K':
+        // 开尔文转摄氏度
+        result = value - 273.15;
+        printf("%.2f K = %.2f C\n", value, result);
+        // 开尔文转华氏度
+        result = value * 9.0 / 5.0 - 459.67;
+        printf("%.2f K = %.2f F\n", value, result);
+        break;
+    default:
+        printf("输入的单位错误，请输入 C、F 或 K。\n");
+    }
 }
-
-
 
 void printHelp() {
     printf("帮助\n");
